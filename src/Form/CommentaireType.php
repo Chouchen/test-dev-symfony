@@ -3,14 +3,18 @@
 namespace App\Form;
 
 use App\Entity\Commentaire;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
+//use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CommentaireType extends AbstractType
 {
@@ -40,25 +44,24 @@ class CommentaireType extends AbstractType
                 ]
             ])
             ->add('titre', TextType::class, [
-                'label' => 'Ajouter votre email',
+                'label' => 'titre de commentaire',
                 'attr' => [
                     'class' => 'title',
                     'minlength' => 4
                 ]
             ])
             ->add('contenu', CKEditorType::class, [
-                'label' => 'Ajouter votre email',
+                'label' => 'contenu de commentaire',
                 'attr' => [
                     'class' => 'email-form',
                     'minlength' => 100
                 ]
             ])
+
+
             
-            ->add('postid', HiddenType::class, [
-                'mapped' => false
-            ])
-            ->add('commenter' , SubmitType::class)
-        ;
+            
+            ->add('commenter' , SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
