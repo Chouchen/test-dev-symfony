@@ -46,16 +46,13 @@
         $(function() {
             $('#comment-form').submit(function(e) {
                 e.preventDefault();
-                // Disable the submit button
                 $('#comment-form button[type="submit"]').prop('disabled', true);
                 var formData = $(this).serialize();
-                // Get the old form and comments section
                 $.ajax({
                     type: 'POST',
                     url: '{{ path(app.request.attributes.get('_route'), {'id': post.id}) }}',
                     data: formData + '&post_id=' + {{ post.id }},
                     success: function(response) {
-                        // Remove the old form and comments section
                         var commentsHtml = $(response).find('#comment-list').html();
                         $('#comment-form button[type="submit"]').prop('disabled', false);
                         $('#comment-list').html(commentsHtml);
