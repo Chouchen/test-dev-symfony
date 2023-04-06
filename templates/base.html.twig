@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="fr">
+
+<head>
+    <title>Test web dev</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+        <noscript><link rel="stylesheet" href="{{ asset('assets/css/noscript.css') }}" /></noscript>
+    {% endblock %}
+</head>
+
+<body class="landing is-preload">
+
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="#">Test Web Dev</a></h1>
+    </header>
+
+    {% block body %}{% endblock %}
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; Test web dev</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.scrollex.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.scrolly.min.js') }}"></script>
+    <script src="{{ asset('assets/js/browser.min.js') }}"></script>
+    <script src="{{ asset('assets/js/breakpoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/util.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>

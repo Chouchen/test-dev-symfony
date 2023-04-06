@@ -1,0 +1,15 @@
+{% if comments is not empty %}
+    {% for comment in comments %}
+        <div class="comment container">
+            <h3>{{ comment.titre }}</h3>
+            <p>{{ comment.content }}</p>
+            <div class="post-info">
+            <p>{{ comment.email }}</p>
+            <p>Posté par <a href="mailto:{{ comment.email }}">{{ comment.nom }}</a></p>
+            <p class = "note">Note: {{ comment.note }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>y a auncune commentaire sur ce poste.</p>
+{% endif %}

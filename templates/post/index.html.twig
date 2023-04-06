@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de posts{% endblock %}
+
+{% block body %}
+    <!-- Two -->
+    <section id="two" class="wrapper alt style2">
+        {% for post in posts %}
+        <section class="spotlight">
+            <div class="content">
+                <h2>{{ post.title }}</h2>
+                <a href="{{ path('app_post', {'id': post.id}) }}">Voir le post</a>
+            </div>
+        </section>
+        {% endfor %}
+    </section>
+{% endblock %}

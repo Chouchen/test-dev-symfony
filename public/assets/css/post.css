@@ -1,0 +1,50 @@
+.comment{
+    color: black;
+    background-color: white;
+}
+.containerH2{
+    margin-top: 7%;
+    margin-left: 10%;
+}
+.comment.container {
+    width: 80%;
+    margin: auto;
+    border-radius: 7px;
+    padding: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+.comment h3{
+    color: dodgerblue;
+}
+.post-info {
+    display: flex;
+    justify-content: space-between;
+}
+p.note::after {
+    content: "\002B50";
+}
+.formumair label{
+    color: black;
+}
+.formumair{
+    width: 80%;
+    margin: auto;
+    border-radius: 7px;
+    background-color: white;
+    padding: 14px 0 14px 0;
+    /*padding: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px*/
+}
+#comments_envoyer{
+    background-color: dodgerblue;
+}
+input#comments_note {
+    color: black;
+}
+
+input[type="text"], input[type="password"], input[type="email"], select, textarea {
+
+    background-color: darkgrey;
+}
