@@ -3,8 +3,25 @@
 {% block title %}{{ post.title }} - Post{% endblock %}
 
 {% block body %}
+    {% block head %}
+        <head>
+            <link href="/assets/css/post.css" rel="stylesheet" />
+            {% for message in app.flashes('message') %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        </head>
+    {% endblock %}
+
     <article id="main">
         <header>
+            {% if comments is not empty %}
+                {% set totalNotes = 0 %}
+                {% for comment in comments %}
+                    {% set totalNotes = totalNotes + comment.note %}
+                {% endfor %}
+                <p class = "note">Moyen Note: {{ totalNotes / comments|length }}</p>
+                <p>nombre des commentaires : {{comments|length }}</p>
+            {% endif %}
             <h2>{{ post.title }}</h2>
         </header>
         <section class="wrapper style5">
@@ -13,4 +30,36 @@
             </div>
         </section>
     </article>
+
+    <div class="container">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </div>
+
+     <div id="comment-list">
+        {% include 'post/comment_list.html.twig' %}
+    </div>
+
+    <h2 class="containerH2">Ajouter un commentaire</h2>
+    {{ form(formulaire, {'attr': {'id': 'comment-form','class' : 'formumair'},'action': path('app_post', {'id': post.id})})}}
+    
+    <script>
+        $(function() {
+            $('#comment-form').submit(function(e) {
+                e.preventDefault();
+                $('#comment-form button[type="submit"]').prop('disabled', true);
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ path(app.request.attributes.get('_route'), {'id': post.id}) }}',
+                    data: formData + '&post_id=' + {{ post.id }},
+                    success: function(response) {
+                        var commentsHtml = $(response).find('#comment-list').html();
+                        $('#comment-form button[type="submit"]').prop('disabled', false);
+                        $('#comment-list').html(commentsHtml);
+                        $('#comment-form')[0].reset();
+                    },
+                });
+            });
+        });
+    </script>
 {% endblock %}

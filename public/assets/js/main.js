@@ -4,6 +4,27 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+/*const commentForm = document.getElementById('#comment-form');
+const comments = document.getElementById('#comments');
+
+//const commentairesContainer = document.getElementById('#comment-res');
+
+commentForm.addEventListener('submit' , function name(e) {
+    e.preventDefault();
+    fetch(this.action,{
+        body: new FormData(e. target),
+        method: 'POST'
+    }).then(response => response.json()).then(json =>{
+        handleResponse(json);
+});
+
+})
+
+const handleResponse = function(response) {
+	comments.innerHTML += response.html;
+}*/
+
+
 (function($) {
 
 	var	$window = $(window),
