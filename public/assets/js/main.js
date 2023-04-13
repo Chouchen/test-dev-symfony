@@ -1,28 +1,38 @@
-/*
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+// L'ajax pour soumettre la formulaire de commentaire
 
-/*const commentForm = document.getElementById('#comment-form');
-const comments = document.getElementById('#comments');
-
-//const commentairesContainer = document.getElementById('#comment-res');
-
-commentForm.addEventListener('submit' , function name(e) {
-    e.preventDefault();
-    fetch(this.action,{
-        body: new FormData(e. target),
-        method: 'POST'
-    }).then(response => response.json()).then(json =>{
-        handleResponse(json);
+ $(function() {
+            $('#comment-form').submit(function(e) {
+                e.preventDefault();
+                $('#comment-form button[type="submit"]').prop('disabled', true);
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: commentPath.replace('postId', postId),
+                    data: formData + '&post_id=' + postId,
+                    success: function(response) {
+						$('div#error-messages').hide();
+						$('div#success-messages').hide();
+						var parser = new DOMParser();
+						var htmlDoc = parser.parseFromString(response, 'text/html');
+						var ulElement = htmlDoc.querySelector('#comment-form ul li');
+						var errorElement = ulElement ? ulElement.textContent : '';
+						console.log(errorElement);
+    					if (errorElement != '') {
+							$('div#error-messages').show();
+							$('#error-messages').html(errorElement);
+						}else{
+							$('div#success-messages').html('Success! votre commentaire est bien ajouté');
+							$('div#success-messages').show();
+						}
+                        var commentsHtml = $(response).find('#comment-list').html();
+                        $('#comment-form button[type="submit"]').prop('disabled', false);
+                        $('#comment-list').html(commentsHtml);
+                        $('#comment-form')[0].reset();
+						
+                    },
+                });
+            });
 });
-
-})
-
-const handleResponse = function(response) {
-	comments.innerHTML += response.html;
-}*/
 
 
 (function($) {

@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\Length;
 
 class CommentsType extends AbstractType
 {
@@ -21,7 +22,8 @@ class CommentsType extends AbstractType
                 'attr' => [
                     'placeholder' => 'exemple@gmail.fr', 
                     'class' => 'email-form'
-                ]
+                ],
+                'required' => false
             ])
             ->add('nom',TextType::class, [
                 'label' => 'votre pseudo',
@@ -46,8 +48,13 @@ class CommentsType extends AbstractType
                 'attr' => [
                     'placeholder' => 'titre', 
                     'class' => 'title',
-                    'minlength' => 4
-                ]
+                ],
+                'constraints' => [
+                    new Length([
+                        'min' => 4,
+                        'minMessage' => 'Le titre doit comporter au moins 4 caractères.',
+                    ]),
+                ],
             ])
             ->add('contenu',TextType::class, [
                 'label' => 'votre commentaire',

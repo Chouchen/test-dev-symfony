@@ -43,8 +43,27 @@ p.note::after {
 input#comments_note {
     color: black;
 }
+div#error-messages{
+    color: #D8000C;
+    background-color: #FFBABA;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 6px;
+    padding: 13px;
+    margin-bottom: 1%;
+    display: none;
+}
+div#success-messages{
+    color: #4F8A10;
+	background-color: #DFF2BF;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 6px;
+    padding: 13px;
+    margin-bottom: 1%;
+    display: none;
+}
 
 input[type="text"], input[type="password"], input[type="email"], select, textarea {
-
     background-color: darkgrey;
 }
